@@ -2,13 +2,15 @@ import instance from "axios";
 export const axios = instance.create({
   baseURL: "http://localhost/lms/index.php",
 });
-
 export const transform = (postdata) => {
   const fd = new FormData();
   for (let key in postdata) {
     fd.append(key, postdata[key]);
   }
   return fd;
+};
+export const loginService = async (pd) => {
+  return await axios.post(`?page=login&action=login`).then((res) => res.data);
 };
 export const adminService = {
   view: async () =>
